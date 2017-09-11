@@ -1,0 +1,8 @@
+﻿  MyDatabase.cpp
+  BiblioDlg.cpp
+  Biblio.cpp
+  Generating Code...
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(165): warning C4715: 'CMyDatabase::HasBook': not all control paths return a value
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(138): warning C4715: 'CMyDatabase::AddBook': not all control paths return a value
+  Biblio.vcxproj -> C:\Users\adam\source\repos\Biblio\Debug\Biblio.exe
+  Biblio.vcxproj -> C:\Users\adam\source\repos\Biblio\Debug\Biblio.pdb (Partial PDB)
