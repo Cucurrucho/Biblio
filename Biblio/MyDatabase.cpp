@@ -78,7 +78,7 @@ bool CMyDatabase::Open()
 		return true;
 	}
 	int rc = sqlite3_open("test.db", &mdb);
-	if (rc) {
+	if (rc != SQLITE_OK) {
 		OnError("Open Database");
 		return false;
 	}
@@ -120,7 +120,7 @@ bool CMyDatabase::AddBook(const char * zTitulo, const char * zAutor, const char 
 		sql += zBuff;
 		sql += "');";
 		rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
-		if (rc) {
+		if (rc != SQLITE_OK) {
 			OnError("Add Book");
 			return false;
 		}
@@ -132,7 +132,22 @@ bool CMyDatabase::AddBook(const char * zTitulo, const char * zAutor, const char 
 	}
 	else
 	{
-
+		char zBuff[128];
+		sprintf_s(zBuff, sizeof(zBuff), "%d", nEjemplares + ejemplares);
+		CString sql = "UPDATE Books SET Ejemplares = ";
+		sql += zBuff;
+		sql += " WHERE ISBN = '";
+		sql += zISBN;
+		sql += "';";
+		rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+		if (rc != SQLITE_OK)
+		{
+			OnError("Update Error");
+		}
+		else
+		{
+			MessageBox(NULL, "Book Updated", "Success", NULL);
+		}
 	}
 	
 }
@@ -143,23 +158,28 @@ int CMyDatabase::HasBook(const char * zISBN)
 	if (!Open())
 		return false;
 
-	int rc;
-	CString sql;
-	sql = "SELECT Ejemplares FROM Books WHERE ISBN = '";
+	sqlite3_stmt *stmt;
+	CString sql = "SELECT Ejemplares FROM Books WHERE ISBN = '";
 	sql += zISBN;
 	sql += "';";
-	rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
-	if (rc) {
-		OnError("Select error");
+	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		OnError("Statment error");
 	}
-	else {
-		if (rc == NULL)
-		{
-			return 0;
-		}
-		else
-		{
-			return rc;
-		}
+	rc = sqlite3_step(stmt);
+	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
+	{
+		OnError("Select Error");
+		sqlite3_finalize(stmt);
 	}
+	if (rc == SQLITE_DONE)
+	{
+		sqlite3_finalize(stmt);
+		return 0;
+	}
+	int ejemplares = sqlite3_column_int(stmt,0);
+	sqlite3_finalize(stmt);
+	return ejemplares;
+	
 }
