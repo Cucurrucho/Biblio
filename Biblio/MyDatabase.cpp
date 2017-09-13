@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MyDatabase.h"
 #include "sqlite3.h"
+#include "Book.h"
 
 CMyDatabase gDB;
 
@@ -89,8 +90,7 @@ bool CMyDatabase::Open()
 }
 
 
-bool CMyDatabase::AddBook(const char * zTitulo, const char * zAutor, const char * zISBN,
-	const char * zGenero, const char * zComentario, int nEjemplares)
+bool CMyDatabase::AddBook(CBook &book)
 {
 	if (!mdb) {
 		Open();
@@ -100,22 +100,27 @@ bool CMyDatabase::AddBook(const char * zTitulo, const char * zAutor, const char 
 	}
 	CString sql;
 	int rc;
-	int ejemplares = HasBook(zISBN);
+	int ejemplares = HasBook(book);
+	if (ejemplares == -1)
+	{
+		MessageBox(NULL, "Error de lectura de BD", "Error", NULL);
+		return false;
+	}
 	if (ejemplares == 0)
 	{
 		char zBuff[128];
-		sprintf_s(zBuff, sizeof(zBuff), "%d", nEjemplares);
+		sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares);
 		sql = "INSERT INTO BOOKS (Titulo,Autor,ISBN,Genero,Comentario,Ejemplares) ";
 		sql += "Values ('";
-		sql += zTitulo;
+		sql += book.mTitulo;
 		sql += "', '";
-		sql += zAutor;
+		sql += book.mAutor;
 		sql += "', '";
-		sql += zISBN;
+		sql += book.mISBN;
 		sql += "', '";
-		sql += zGenero;
+		sql += book.mGenero;
 		sql += "', '";
-		sql += zComentario;
+		sql += book.mComentario;
 		sql += "', '";
 		sql += zBuff;
 		sql += "');";
@@ -127,56 +132,91 @@ bool CMyDatabase::AddBook(const char * zTitulo, const char * zAutor, const char 
 		else
 		{
 			MessageBox(NULL, "Book Added", "Success", NULL);
+			return true;
 		}
 
 	}
 	else
 	{
-		char zBuff[128];
-		sprintf_s(zBuff, sizeof(zBuff), "%d", nEjemplares + ejemplares);
-		CString sql = "UPDATE Books SET Ejemplares = ";
-		sql += zBuff;
-		sql += " WHERE ISBN = '";
-		sql += zISBN;
-		sql += "';";
-		rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
-		if (rc != SQLITE_OK)
-		{
-			OnError("Update Error");
+		int result = MessageBox(NULL, "El libro ya esta fichado, desea agregar ejemplar", "Libro Fichado", MB_YESNO);
+		if (result == IDYES) {
+			char zBuff[128];
+			sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares + ejemplares);
+			sql = "UPDATE Books SET Ejemplares = ";
+			sql += zBuff;
+			sql += " WHERE ISBN = '";
+			sql += book.mISBN;
+			sql += "';";
+			rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+			if (rc != SQLITE_OK)
+			{
+				OnError("Update Error");
+				return false;
+			}
+			else
+			{
+				MessageBox(NULL, "Book Updated", "Success", NULL);
+				return true;
+			}
 		}
 		else
 		{
-			MessageBox(NULL, "Book Updated", "Success", NULL);
+			return true;
 		}
 	}
 	
 }
 
 
-int CMyDatabase::HasBook(const char * zISBN)
+int CMyDatabase::HasBook(CBook &book)
 {
 	if (!Open())
 		return false;
 
 	sqlite3_stmt *stmt;
 	CString sql = "SELECT Ejemplares FROM Books WHERE ISBN = '";
-	sql += zISBN;
+	sql += book.mISBN;
 	sql += "';";
 	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
 	if (rc != SQLITE_OK)
 	{
 		OnError("Statment error");
+		return -1;
 	}
 	rc = sqlite3_step(stmt);
 	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
 	{
 		OnError("Select Error");
 		sqlite3_finalize(stmt);
+		return -1;
 	}
 	if (rc == SQLITE_DONE)
 	{
 		sqlite3_finalize(stmt);
-		return 0;
+		sql = "SELECT Ejemplares FROM Books WHERE Titulo = '";
+		sql += book.mTitulo;
+		sql += "';";
+		rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
+		if (rc != SQLITE_OK)
+		{
+			OnError("Statment error");
+			return -1;
+		}
+		rc = sqlite3_step(stmt);
+		if (rc != SQLITE_ROW && rc != SQLITE_DONE)
+		{
+			OnError("Select Error");
+			sqlite3_finalize(stmt);
+			return -1;
+		}
+		if (rc == SQLITE_DONE)
+		{
+			sqlite3_finalize(stmt);
+			return 0;
+		}
+		int ejemplares = sqlite3_column_int(stmt, 0);
+		sqlite3_finalize(stmt);
+		return ejemplares;
 	}
 	int ejemplares = sqlite3_column_int(stmt,0);
 	sqlite3_finalize(stmt);

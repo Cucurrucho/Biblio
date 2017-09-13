@@ -12,9 +12,8 @@ public:
 	void Close();
 	bool CreateBooksTable();
 	bool Open();
-	bool AddBook(const char * zTitulo, const char * zAutor, const char * zISBN,
-		const char * zGenero, const char * zComentario = NULL, int nEjemplares = 1);
-	int HasBook(const char * zISBN);
+	bool AddBook(class CBook &book);
+	int HasBook(class CBook &book);
 };
 extern CMyDatabase gDB;
 

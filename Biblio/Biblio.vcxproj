@@ -89,7 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
@@ -187,8 +187,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Sqlite\sqlite3.h" />
+    <ClInclude Include="AddBookDlg.h" />
     <ClInclude Include="Biblio.h" />
     <ClInclude Include="BiblioDlg.h" />
+    <ClInclude Include="Book.h" />
     <ClInclude Include="CBooks.h" />
     <ClInclude Include="MyDatabase.h" />
     <ClInclude Include="Resource.h" />
@@ -197,8 +199,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Sqlite\sqlite3.c" />
+    <ClCompile Include="AddBookDlg.cpp" />
     <ClCompile Include="Biblio.cpp" />
     <ClCompile Include="BiblioDlg.cpp" />
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="CBooks.cpp" />
     <ClCompile Include="MyDatabase.cpp" />
     <ClCompile Include="stdafx.cpp">

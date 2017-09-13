@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include "CBooks.h"
 #include "MyDatabase.h"
+#include "Book.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -180,5 +181,5 @@ void CBiblioDlg::OnDatabaseInit()
 
 void CBiblioDlg::OnDatabaseInsertbook()
 {
-	gDB.AddBook("Adam", "Bla Bla", "123456", "Bla");
+	gBooks.Add();
 }
