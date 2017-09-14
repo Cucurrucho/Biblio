@@ -70,7 +70,6 @@ BEGIN_MESSAGE_MAP(CBiblioDlg, CDialogEx)
 	ON_COMMAND(ID_FILE_EXIT, &CBiblioDlg::OnFileExit)
 	ON_COMMAND(ID_BOOKS_ADD, &CBiblioDlg::OnBooksAdd)
 	ON_COMMAND(ID_DATABASE_INIT, &CBiblioDlg::OnDatabaseInit)
-	ON_COMMAND(ID_DATABASE_INSERTBOOK, &CBiblioDlg::OnDatabaseInsertbook)
 END_MESSAGE_MAP()
 
 
@@ -176,10 +175,4 @@ void CBiblioDlg::OnBooksAdd()
 void CBiblioDlg::OnDatabaseInit()
 {
 	gDB.Init();
-}
-
-
-void CBiblioDlg::OnDatabaseInsertbook()
-{
-	gBooks.Add();
 }

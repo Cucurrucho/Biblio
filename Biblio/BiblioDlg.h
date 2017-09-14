@@ -35,5 +35,4 @@ public:
 	afx_msg void OnFileExit();
 	afx_msg void OnBooksAdd();
 	afx_msg void OnDatabaseInit();
-	afx_msg void OnDatabaseInsertbook();
 };
