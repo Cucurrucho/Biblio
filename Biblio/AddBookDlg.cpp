@@ -16,7 +16,7 @@ CAddBookDlg::CAddBookDlg(CBook &book, CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_ADD_BOOK, pParent)
 	, mBook(book)
 {
-	
+
 }
 
 CAddBookDlg::~CAddBookDlg()
@@ -63,6 +63,14 @@ void CAddBookDlg::OnOK()
 		MessageBox("Por favor llenar el campo " + sMissing, "Faltan Campos");
 	}
 
+}
+
+BOOL CAddBookDlg::OnInitDialog()
+{
+	CWnd *pWnd = GetDlgItem(IDC_EDIT_EJEMPLARES);
+	if (pWnd)
+		pWnd->SetWindowText("1");
+	return CDialogEx::OnInitDialog();;
 }
 
 

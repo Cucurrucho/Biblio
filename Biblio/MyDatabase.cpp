@@ -56,8 +56,8 @@ bool CMyDatabase::CreateBooksTable()
 		"ID INTEGER PRIMARY KEY NOT NULL,"
 		"Titulo			TEXT  NOT NULL,"
 		"Autor          TEXT  NOT NULL,"
-		"ISBN           TEXT NOT NULL,"
-		"Genero         TEXT NOT NULL,"
+		"ISBN           TEXT,"
+		"Genero         TEXT,"
 		"Ejemplares     INTEGER DEFAULT 1,"
 		"Comentario     TEXT,"
 		"Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);";
@@ -84,7 +84,6 @@ bool CMyDatabase::Open()
 		return false;
 	}
 	else {
-		MessageBox(NULL, "DB opend", "Success", NULL);
 		return true;
 	}
 }
@@ -131,7 +130,7 @@ bool CMyDatabase::AddBook(CBook &book)
 		}
 		else
 		{
-			MessageBox(NULL, "Book Added", "Success", NULL);
+			MessageBox(NULL, "Libro Fichado", "Exito", NULL);
 			return true;
 		}
 
@@ -155,7 +154,7 @@ bool CMyDatabase::AddBook(CBook &book)
 			}
 			else
 			{
-				MessageBox(NULL, "Book Updated", "Success", NULL);
+				MessageBox(NULL, "Libro Actualizado", "Exito", NULL);
 				return true;
 			}
 		}
