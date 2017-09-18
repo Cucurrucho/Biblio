@@ -56,6 +56,7 @@ bool CMyDatabase::CreateBooksTable()
 		"ID INTEGER PRIMARY KEY NOT NULL,"
 		"Titulo			TEXT  NOT NULL,"
 		"Autor          TEXT  NOT NULL,"
+		"Editorial          TEXT  NOT NULL,"
 		"ISBN           TEXT,"
 		"Genero         TEXT,"
 		"Ejemplares     INTEGER DEFAULT 1,"
@@ -109,11 +110,13 @@ bool CMyDatabase::AddBook(CBook &book)
 	{
 		char zBuff[128];
 		sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares);
-		sql = "INSERT INTO BOOKS (Titulo,Autor,ISBN,Genero,Comentario,Ejemplares) ";
+		sql = "INSERT INTO BOOKS (Titulo,Autor,Editorial,ISBN,Genero,Comentario,Ejemplares) ";
 		sql += "Values ('";
 		sql += book.mTitulo;
 		sql += "', '";
 		sql += book.mAutor;
+		sql += "', '";
+		sql += book.mEditorial;
 		sql += "', '";
 		sql += book.mISBN;
 		sql += "', '";
