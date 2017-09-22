@@ -186,25 +186,34 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\Sqlite\sqlite3.h" />
     <ClInclude Include="AddBookDlg.h" />
+    <ClInclude Include="AddSocioDlg.h" />
     <ClInclude Include="Biblio.h" />
     <ClInclude Include="BiblioDlg.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="CBooks.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="Socio.h" />
     <ClInclude Include="MyDatabase.h" />
+    <ClInclude Include="MyDialogEx.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Socios.h" />
+    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\Sqlite\sqlite3.c" />
     <ClCompile Include="AddBookDlg.cpp" />
+    <ClCompile Include="AddSocioDlg.cpp" />
     <ClCompile Include="Biblio.cpp" />
     <ClCompile Include="BiblioDlg.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="CBooks.cpp" />
+    <ClCompile Include="Socio.cpp" />
     <ClCompile Include="MyDatabase.cpp" />
+    <ClCompile Include="MyDialogEx.cpp" />
+    <ClCompile Include="Socios.cpp" />
+    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -214,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Biblio.rc" />
+    <ResourceCompile Include="Biblio1.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Biblio.rc2" />

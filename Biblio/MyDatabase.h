@@ -14,6 +14,8 @@ public:
 	bool Open();
 	bool AddBook(class CBook &book);
 	int HasBook(class CBook &book);
+	bool CreateSociosTable();
+	bool AddSocio(class CSocio &socio);
 };
 extern CMyDatabase gDB;
 

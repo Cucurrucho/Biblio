@@ -13,7 +13,7 @@
 IMPLEMENT_DYNAMIC(CAddBookDlg, CDialogEx)
 
 CAddBookDlg::CAddBookDlg(CBook &book, CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_ADD_BOOK, pParent)
+	: CMyDialogEx(IDD_ADD_BOOK, pParent)
 	, mBook(book)
 {
 

@@ -2,6 +2,7 @@
 #include "MyDatabase.h"
 #include "sqlite3.h"
 #include "Book.h"
+#include "Socio.h"
 
 CMyDatabase gDB;
 
@@ -20,6 +21,7 @@ CMyDatabase::~CMyDatabase()
 void CMyDatabase::Init()
 {
 	CreateBooksTable();
+	CreateSociosTable();
 }
 
 
@@ -224,4 +226,69 @@ int CMyDatabase::HasBook(CBook &book)
 	sqlite3_finalize(stmt);
 	return ejemplares;
 	
+}
+
+
+bool CMyDatabase::CreateSociosTable()
+{
+	if (!Open())
+		return false;
+
+	int rc;
+	char *sql;
+	sql = "CREATE TABLE Socios ("
+		"ID INTEGER PRIMARY KEY NOT NULL,"
+		"Nombre			TEXT  NOT NULL,"
+		"DNI			TEXT,"
+		"Telefono		TEXT,"
+		"Mail			TEXT,"
+		"Domicilio		TEXT,"
+		"Ingreso		DATETIME,"
+		"Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);";
+	rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+	if (rc) {
+		OnError("Create Table");
+	}
+	else {
+		MessageBox(NULL, "Table created", "Success", NULL);
+	}
+	Close();
+	return rc == 0;
+	
+}
+
+
+bool CMyDatabase::AddSocio(CSocio &socio)
+{
+	if (!mdb) {
+		Open();
+		if (!mdb) {
+			return false;
+		}
+	}
+	CString sql;
+	int rc;
+	sql = "INSERT INTO Socios (Nombre,DNI,Telefono,Mail,Domicilio,Ingreso) VALUES ('";
+	sql += socio.mNombre;
+	sql += "', '";
+	sql += socio.mDNI;
+	sql += "', '";
+	sql += socio.mTelefono;
+	sql += "', '";
+	sql += socio.mMail;
+	sql += "', '";
+	sql += socio.mDomicilio;
+	sql += "', '";
+	sql += socio.mIngreso;
+	sql += "');";
+	rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+	if (rc != SQLITE_OK) {
+		OnError("Agregar Socio");
+		return false;
+	}
+	else
+	{
+		MessageBox(NULL, "Socio Agregado", "Exito", NULL);
+		return true;
+	}
 }
