@@ -1,9 +1,10 @@
 #pragma once
+#include "MyDialogEx.h"
 
 
 // CAddBookDlg dialog
 
-class CAddBookDlg : public CDialogEx
+class CAddBookDlg : public CMyDialogEx
 {
 	DECLARE_DYNAMIC(CAddBookDlg)
 
@@ -25,4 +26,5 @@ public:
 	virtual void OnOK();
 	virtual BOOL OnInitDialog();
 
+	afx_msg void OnBnClickedButtonBuscar();
 };

@@ -9,6 +9,7 @@
 #include "CBooks.h"
 #include "MyDatabase.h"
 #include "Book.h"
+#include "Socios.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -70,6 +71,7 @@ BEGIN_MESSAGE_MAP(CBiblioDlg, CDialogEx)
 	ON_COMMAND(ID_FILE_EXIT, &CBiblioDlg::OnFileExit)
 	ON_COMMAND(ID_BOOKS_ADD, &CBiblioDlg::OnBooksAdd)
 	ON_COMMAND(ID_DATABASE_INIT, &CBiblioDlg::OnDatabaseInit)
+	ON_COMMAND(ID_SOCIOS_AGREGAR, &CBiblioDlg::OnSociosAgregar)
 END_MESSAGE_MAP()
 
 
@@ -176,3 +178,11 @@ void CBiblioDlg::OnDatabaseInit()
 {
 	gDB.Init();
 }
+
+
+void CBiblioDlg::OnSociosAgregar()
+{
+	gSocios.Add();
+	
+}
+

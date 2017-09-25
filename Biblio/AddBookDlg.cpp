@@ -6,6 +6,7 @@
 #include "AddBookDlg.h"
 #include "afxdialogex.h"
 #include "Book.h"
+#include "HttpClient.h"
 
 
 // CAddBookDlg dialog
@@ -13,7 +14,7 @@
 IMPLEMENT_DYNAMIC(CAddBookDlg, CDialogEx)
 
 CAddBookDlg::CAddBookDlg(CBook &book, CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_ADD_BOOK, pParent)
+	: CMyDialogEx(IDD_ADD_BOOK, pParent)
 	, mBook(book)
 {
 
@@ -76,7 +77,31 @@ BOOL CAddBookDlg::OnInitDialog()
 
 
 BEGIN_MESSAGE_MAP(CAddBookDlg, CDialogEx)
+	ON_BN_CLICKED(IDC_BUTTON_BUSCAR, &CAddBookDlg::OnBnClickedButtonBuscar)
 END_MESSAGE_MAP()
 
 
 // CAddBookDlg message handlers
+
+
+void CAddBookDlg::OnBnClickedButtonBuscar()
+{
+	CWnd *pWnd = GetDlgItem(IDC_EDIT_ISBN);
+	if (!pWnd)
+		return;
+
+	pWnd->GetWindowText(mBook.mISBN);
+	if (mBook.mISBN.IsEmpty())
+	{
+		MessageBox("Por Favor llenar campo ISBN", "Aviso");
+		return;
+	}
+	CHttpClient client;
+	if (client.OpenInternetConnection(mBook))
+	{
+		SetText(IDC_EDIT_TITULO, mBook.mTitulo);
+		SetText(IDC_EDIT_AUTOR, mBook.mAutor);
+		SetText(IDC_EDIT_EDITORIAL, mBook.mEditorial);
+	}
+
+}
