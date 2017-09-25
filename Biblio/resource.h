@@ -23,22 +23,26 @@
 #define IDC_EDIT_EJEMPLARES             1006
 #define IDC_INGRESO                     1006
 #define IDC_EDIT_GENERO                 1007
-#define IDC_EDIT1                       1007
 #define IDC_EDIT_DOMICILIO              1007
+#define IDC_BUSCAR                      1008
+#define IDC_BUTTON_BUSCAR               1008
+#define IDC_BUTTON2                     1009
 #define ID_FILE_EXIT                    32771
 #define ID_BOOKS_ADD                    32772
 #define ID_BOOKS_REMOVE                 32773
 #define ID_DATABASE_INIT                32774
 #define ID_DATABASE_INSERTBOOK          32775
 #define ID_SOCIOS_AGREGAR               32776
+#define ID_LIBROS_BUSCAR                32777
+#define ID_BUSCAR_PORISBN               32778
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32777
-#define _APS_NEXT_CONTROL_VALUE         1008
+#define _APS_NEXT_COMMAND_VALUE         32779
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

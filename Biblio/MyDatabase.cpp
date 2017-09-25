@@ -22,6 +22,7 @@ void CMyDatabase::Init()
 {
 	CreateBooksTable();
 	CreateSociosTable();
+	DBSeeder();
 }
 
 
@@ -102,13 +103,7 @@ bool CMyDatabase::AddBook(CBook &book)
 	}
 	CString sql;
 	int rc;
-	int ejemplares = HasBook(book);
-	if (ejemplares == -1)
-	{
-		MessageBox(NULL, "Error de lectura de BD", "Error", NULL);
-		return false;
-	}
-	if (ejemplares == 0)
+	if (!HasBook(book))
 	{
 		char zBuff[128];
 		sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares);
@@ -142,7 +137,9 @@ bool CMyDatabase::AddBook(CBook &book)
 	}
 	else
 	{
-		int result = MessageBox(NULL, "El libro ya esta fichado, desea agregar ejemplar", "Libro Fichado", MB_YESNO);
+		MessageBox(NULL, "El libro ya esta en el bas de datos", "Aviso", NULL);
+		return false;
+		/*int result = MessageBox(NULL, "El libro ya esta fichado, desea agregar ejemplar", "Libro Fichado", MB_YESNO);
 		if (result == IDYES) {
 			char zBuff[128];
 			sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares + ejemplares);
@@ -166,19 +163,25 @@ bool CMyDatabase::AddBook(CBook &book)
 		else
 		{
 			return true;
-		}
+		}*/
 	}
 	
 }
 
 
-int CMyDatabase::HasBook(CBook &book)
+bool CMyDatabase::HasBook(CBook &book)
 {
-	if (!Open())
+	if (!book.mISBN.IsEmpty()) {
+		if (SearchBookByISBN(book))
+			return true;
+	}
+	if (!book.mTitulo.IsEmpty())
+		return SearchBookByTitle(book);
+	/*if (!Open())
 		return false;
 
 	sqlite3_stmt *stmt;
-	CString sql = "SELECT Ejemplares FROM Books WHERE ISBN = '";
+	CString sql = "SELECT * FROM Books WHERE ISBN = '";
 	sql += book.mISBN;
 	sql += "';";
 	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
@@ -197,7 +200,7 @@ int CMyDatabase::HasBook(CBook &book)
 	if (rc == SQLITE_DONE)
 	{
 		sqlite3_finalize(stmt);
-		sql = "SELECT Ejemplares FROM Books WHERE Titulo = '";
+		sql = "SELECT * FROM Books WHERE Titulo = '";
 		sql += book.mTitulo;
 		sql += "';";
 		rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
@@ -224,8 +227,8 @@ int CMyDatabase::HasBook(CBook &book)
 	}
 	int ejemplares = sqlite3_column_int(stmt,0);
 	sqlite3_finalize(stmt);
-	return ejemplares;
-	
+	return ejemplares;*/
+	return false;
 }
 
 
@@ -291,4 +294,96 @@ bool CMyDatabase::AddSocio(CSocio &socio)
 		MessageBox(NULL, "Socio Agregado", "Exito", NULL);
 		return true;
 	}
+}
+
+
+bool CMyDatabase::SearchBookByISBN(CBook & book)
+{
+	if (!Open())
+		return false;
+
+	sqlite3_stmt *stmt;
+	CString sql = "SELECT * FROM Books WHERE ISBN = '";
+	sql += book.mISBN;
+	sql += "';";
+	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		OnError("Statment error");
+		return false;
+	}
+	rc = sqlite3_step(stmt);
+	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
+	{
+		OnError("Select Error");
+		sqlite3_finalize(stmt);
+		return false;
+	}
+	if (rc == SQLITE_DONE)
+	{
+			sqlite3_finalize(stmt);
+			return false;
+	}
+	book.mTitulo = sqlite3_column_text(stmt, 0);
+	book.mEditorial = sqlite3_column_text(stmt, 2);
+	book.mISBN = sqlite3_column_text(stmt, 3);
+	book.mGenero = sqlite3_column_text(stmt, 4);
+	book.mEjemplares = sqlite3_column_int(stmt, 5);
+	book.mComentario = sqlite3_column_text(stmt, 6);
+	sqlite3_finalize(stmt);
+	return true;
+}
+
+
+bool CMyDatabase::SearchBookByTitle(CBook & book)
+{
+	if (!Open())
+		return false;
+
+	sqlite3_stmt *stmt;
+	CString sql = "SELECT * FROM Books WHERE ISBN = '";
+	sql += book.mISBN;
+	sql += "';";
+	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		OnError("Statment error");
+		return false;
+	}
+	rc = sqlite3_step(stmt);
+	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
+	{
+		OnError("Select Error");
+		sqlite3_finalize(stmt);
+		return false;
+	}
+	if (rc == SQLITE_DONE)
+	{
+		sqlite3_finalize(stmt);
+		return false;
+	}
+	book.mTitulo = sqlite3_column_text(stmt, 0);
+	book.mAutor = sqlite3_column_text(stmt, 1);
+	book.mEditorial = sqlite3_column_text(stmt, 2);
+	book.mGenero = sqlite3_column_text(stmt, 4);
+	book.mEjemplares = sqlite3_column_int(stmt, 5);
+	book.mComentario = sqlite3_column_text(stmt, 6);
+	sqlite3_finalize(stmt);
+	return true;
+}
+
+
+void CMyDatabase::DBSeeder()
+{
+	CBook book;
+	book.mAutor = "Bla Autor";
+	book.mEditorial = "Bla Editorial";
+	book.mTitulo = "Bla1 Title";
+	book.mEjemplares = 1;
+	book.mGenero = "Historia";
+	book.mISBN = "123456";
+	AddBook(book);
+	book.mISBN = "0000";
+	book.mTitulo = "Bla2 Title";
+	AddBook(book);
 }

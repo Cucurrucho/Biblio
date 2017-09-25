@@ -192,6 +192,7 @@
     <ClInclude Include="BiblioDlg.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="CBooks.h" />
+    <ClInclude Include="HttpClient.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="Socio.h" />
     <ClInclude Include="MyDatabase.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="BiblioDlg.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="CBooks.cpp" />
+    <ClCompile Include="HttpClient.cpp" />
     <ClCompile Include="Socio.cpp" />
     <ClCompile Include="MyDatabase.cpp" />
     <ClCompile Include="MyDialogEx.cpp" />

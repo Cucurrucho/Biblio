@@ -185,3 +185,4 @@ void CBiblioDlg::OnSociosAgregar()
 	gSocios.Add();
 	
 }
+
