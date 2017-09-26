@@ -10,6 +10,7 @@
 #include "MyDatabase.h"
 #include "Book.h"
 #include "Socios.h"
+#include "HttpClient.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,6 +73,7 @@ BEGIN_MESSAGE_MAP(CBiblioDlg, CDialogEx)
 	ON_COMMAND(ID_BOOKS_ADD, &CBiblioDlg::OnBooksAdd)
 	ON_COMMAND(ID_DATABASE_INIT, &CBiblioDlg::OnDatabaseInit)
 	ON_COMMAND(ID_SOCIOS_AGREGAR, &CBiblioDlg::OnSociosAgregar)
+	ON_COMMAND(ID_CLIENT_SEARCH, &CBiblioDlg::OnClientSearch)
 END_MESSAGE_MAP()
 
 
@@ -186,3 +188,10 @@ void CBiblioDlg::OnSociosAgregar()
 	
 }
 
+
+
+void CBiblioDlg::OnClientSearch()
+{
+	CHttpClient client;
+	client.Search2();
+}

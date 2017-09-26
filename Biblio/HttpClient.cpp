@@ -40,6 +40,7 @@ bool CHttpClient::OpenInternetConnection(CBook &book)
 		pFile->QueryInfoStatusCode(dwRet);
 		CString sText;
 
+
 		if (dwRet == HTTP_STATUS_OK)
 		{
 			int rc = fopen_s(&pf, "d:\\MyLog\\InternetText.txt", "w");
@@ -102,12 +103,12 @@ bool CHttpClient::OpenInternetConnection(CBook &book)
 				CString sTitle = GetValueFromString(sText, "Título:");
 				CString sAuthors = GetValueFromString(sText, "Autor/es:");
 				CString sEditorial = GetValueFromString(sText, "Sello Editor:");
-				int authorNameIndex =sAuthors.Find(',');
+				/*int authorNameIndex =sAuthors.Find(',');
 				CString sLastName = sAuthors.Mid(0, authorNameIndex);
 				CString sFirstName = sAuthors.Mid(authorNameIndex+2);
 				sAuthors = sFirstName;
 				sAuthors += " ";
-				sAuthors += sLastName;
+				sAuthors += sLastName;*/
 				book.mTitulo = sTitle;
 				book.mAutor = sAuthors;
 				book.mEditorial = sEditorial;
@@ -159,7 +160,7 @@ CString CHttpClient::GetValueFromString(const CString &s, const char *zKey)
 	CString sKey(zKey);
 	int iKey = s.Find(zKey);
 	if (iKey < 0)
-		return sKey + " Not Found";
+		return sKey + " No Encontrado";
 	CString sAfterKey = s.Mid(iKey + sKey.GetLength(), 200);
 	sAfterKey.TrimLeft(' ');
 	while (!sAfterKey.IsEmpty())
@@ -180,4 +181,140 @@ CString CHttpClient::GetValueFromString(const CString &s, const char *zKey)
 	CString sRes = sAfterKey.Left(iAfter);
 	sRes.TrimRight(';');
 	return sRes;
+}
+
+
+bool CHttpClient::Search2()
+{
+	const int N_READ = 1024;
+	//CLogFile log("OpenInternetConnection");
+	CInternetSession session;
+	CHttpConnection* pServer = NULL;
+	CHttpFile* pFile = NULL;
+	FILE *pf = NULL;
+	CString sServerName = "www.bookfinder.com";
+	INTERNET_PORT port = 80;
+	CString sPath = "/search/?author=&title=&lang=any&isbn=9789871144709&new_used=*&destination=us&currency=USD&mode=basic&st=sr&ac=qr";
+	try
+	{
+		DWORD dwRet = 0;
+		pServer = session.GetHttpConnection(sServerName, port);
+		pFile = pServer->OpenRequest(CHttpConnection::HTTP_VERB_GET, sPath);
+		pFile->SendRequest();
+		pFile->QueryInfoStatusCode(dwRet);
+		CString sText;
+
+		if (dwRet == HTTP_STATUS_OK)
+		{
+			int rc = fopen_s(&pf, "d:\\MyLog\\NewInterntText.txt", "w");
+			if (!rc)
+			{
+				unsigned char zBuff[N_READ + 1];
+				int nAllRead = 0;
+				UINT nRead = pFile->Read(zBuff, N_READ);
+				int iRead = 0;
+				while (nRead > 0)
+				{
+					for (int iFill = nRead; iFill <= N_READ; iFill++)
+						zBuff[iFill] = 0;
+					sText += (const char *)zBuff;
+					/*if (log)
+					{
+					fprintf(log.mpf, "%d: %d bytes read\n", iRead, nRead);
+					for (UINT i = 0; i <= nRead; i += 16)
+					{
+					for (int iByte = 0; iByte < 16; iByte++)
+					{
+					fprintf(log.mpf, "%3u ", zBuff[i + iByte]);
+					if (iByte % 8 == 7)
+					fprintf(log.mpf, " - ");
+					}
+					for (int iChar = 0; iChar < 16; iChar++)
+					{
+					unsigned char ch = zBuff[i + iChar];
+					if (ch == '\n')
+					fprintf(log.mpf, "\\n");
+					else
+					fprintf(log.mpf, "%c", ch);
+					//if (iChar == 7)
+					//	fprintf(log.mpf, " - ");
+					}
+					fprintf(log.mpf, "\n");
+					}
+					fprintf(log.mpf, "\n");
+					}*/
+					nAllRead += nRead;
+					fprintf(pf, "%s", zBuff);
+					nRead = pFile->Read(zBuff, N_READ);
+					iRead++;
+					if (iRead > 100)
+					{
+						MessageBox(NULL, "Input text from internet too long", "Reading Book Info Failed", NULL);
+						break;
+					}
+				}
+				/*fclose(pf);
+				sText.Replace("&iacute;", "í");
+				sText.Replace("&oacute;", "ó");
+				sText.Replace("&aacute;", "á");
+				sText.Replace("Ã³", "ó");
+				sText.Replace("Ã±o", "ñ");
+				sText.Replace("Ã­", "í");
+				sText.Replace("Ã¡", "á");
+				sText.Replace("Ã©", "é");
+				sText.Replace("Ã³", "ó");
+				CString sTitle = GetValueFromString(sText, "Título:");
+				CString sAuthors = GetValueFromString(sText, "Autor/es:");
+				CString sEditorial = GetValueFromString(sText, "Sello Editor:");
+				/*int authorNameIndex =sAuthors.Find(',');
+				CString sLastName = sAuthors.Mid(0, authorNameIndex);
+				CString sFirstName = sAuthors.Mid(authorNameIndex+2);
+				sAuthors = sFirstName;
+				sAuthors += " ";
+				sAuthors += sLastName;*/
+				/*book.mTitulo = sTitle;
+				book.mAutor = sAuthors;
+				book.mEditorial = sEditorial;
+				/*if (log)
+				{
+				fprintf(log.mpf, "\nAll Read %d\n\n", nAllRead);
+				fprintf(log.mpf, "sText:\n");
+				fprintf(log.mpf, "%s\n", (const char *)sText);
+				sText.Replace("&iacute;", "í");
+				sText.Replace("&oacute;", "ó");
+				sText.Replace("&aacute;", "á");
+				sText.Replace("Ã³", "ó");
+				sText.Replace("Ã±o", "ñ");
+				fprintf(log.mpf, "\n\n==================> sText Corrected:\n");
+				fprintf(log.mpf, "%s\n", (const char *)sText);
+
+				CString sTitle = GetValueFromString(sText,"Título:");
+				CString sAuthors = GetValueFromString(sText,"Autor/es:");
+
+				fprintf(log.mpf, "\n\n Results:\n");
+				fprintf(log.mpf, "Título: %s\n", (const char *)sTitle);
+				fprintf(log.mpf, "Autor/es: %s\n", (const char *)sAuthors);
+				}*/
+			}
+			else
+			{
+				MessageBox(NULL, "failed to open file, OpenInternetConnection", "error", NULL);
+			}
+
+		}
+		delete pFile;
+		delete pServer;
+		session.Close();
+		return true;
+
+	}
+	catch (CInternetException* pEx)
+	{
+		//catch errors from WinInet
+		TCHAR zError[64];
+		pEx->GetErrorMessage(zError, 64);
+		_tprintf_s(_T("%63s"), zError);
+	}
+
+	return false;
 }
