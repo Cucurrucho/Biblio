@@ -193,7 +193,11 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="CBooks.h" />
     <ClInclude Include="HttpClient.h" />
+    <ClInclude Include="Lend.h" />
+    <ClInclude Include="LendDlg.h" />
+    <ClInclude Include="Lendings.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="resource2.h" />
     <ClInclude Include="Socio.h" />
     <ClInclude Include="MyDatabase.h" />
     <ClInclude Include="MyDialogEx.h" />
@@ -210,7 +214,10 @@
     <ClCompile Include="BiblioDlg.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="CBooks.cpp" />
+    <ClCompile Include="CLend.cpp" />
     <ClCompile Include="HttpClient.cpp" />
+    <ClCompile Include="LendDlg.cpp" />
+    <ClCompile Include="Lendings.cpp" />
     <ClCompile Include="Socio.cpp" />
     <ClCompile Include="MyDatabase.cpp" />
     <ClCompile Include="MyDialogEx.cpp" />
@@ -226,6 +233,7 @@
   <ItemGroup>
     <ResourceCompile Include="Biblio.rc" />
     <ResourceCompile Include="Biblio1.rc" />
+    <ResourceCompile Include="Biblio2.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Biblio.rc2" />

@@ -11,6 +11,7 @@
 #include "Book.h"
 #include "Socios.h"
 #include "HttpClient.h"
+#include "Lendings.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,6 +75,7 @@ BEGIN_MESSAGE_MAP(CBiblioDlg, CDialogEx)
 	ON_COMMAND(ID_DATABASE_INIT, &CBiblioDlg::OnDatabaseInit)
 	ON_COMMAND(ID_SOCIOS_AGREGAR, &CBiblioDlg::OnSociosAgregar)
 	ON_COMMAND(ID_CLIENT_SEARCH, &CBiblioDlg::OnClientSearch)
+	ON_COMMAND(ID_PRESTAR_PRESTARLIBRO, &CBiblioDlg::OnPrestarPrestarlibro)
 END_MESSAGE_MAP()
 
 
@@ -194,4 +196,11 @@ void CBiblioDlg::OnClientSearch()
 {
 	CHttpClient client;
 	client.Search2();
+}
+
+
+void CBiblioDlg::OnPrestarPrestarlibro()
+{
+	CLendings lender;
+	lender.lend();
 }
