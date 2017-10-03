@@ -45,7 +45,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -110,7 +110,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -198,6 +198,8 @@
     <ClInclude Include="Lendings.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="resource2.h" />
+    <ClInclude Include="resource3.h" />
+    <ClInclude Include="ReturnBookDlg.h" />
     <ClInclude Include="Socio.h" />
     <ClInclude Include="MyDatabase.h" />
     <ClInclude Include="MyDialogEx.h" />
@@ -218,6 +220,7 @@
     <ClCompile Include="HttpClient.cpp" />
     <ClCompile Include="LendDlg.cpp" />
     <ClCompile Include="Lendings.cpp" />
+    <ClCompile Include="ReturnBookDlg.cpp" />
     <ClCompile Include="Socio.cpp" />
     <ClCompile Include="MyDatabase.cpp" />
     <ClCompile Include="MyDialogEx.cpp" />
@@ -234,6 +237,7 @@
     <ResourceCompile Include="Biblio.rc" />
     <ResourceCompile Include="Biblio1.rc" />
     <ResourceCompile Include="Biblio2.rc" />
+    <ResourceCompile Include="Biblio3.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Biblio.rc2" />

@@ -38,4 +38,5 @@ public:
 	afx_msg void OnSociosAgregar();
 	afx_msg void OnClientSearch();
 	afx_msg void OnPrestarPrestarlibro();
+	afx_msg void OnPrestarDevolver();
 };

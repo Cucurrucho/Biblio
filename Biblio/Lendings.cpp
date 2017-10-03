@@ -4,7 +4,9 @@
 #include "Socio.h"
 #include "LendDlg.h"
 #include "MyDatabase.h"
+#include "Lend.h"
 
+CLendings gLendings;
 
 CLendings::CLendings()
 {
@@ -23,5 +25,21 @@ void CLendings::lend()
 	CLendDlg dlg(book, socio);
 	int rc = dlg.DoModal();
 	if (rc == IDOK)
-		gDB.AddLending(book, socio);
+	{
+		CLend cLend(book,socio);
+		gDB.AddLending(cLend);
+	}
+}
+
+
+int CLendings::GetLendedBook(const char * zUser, CList<class CBook *, class CBook *> &booksList)
+{
+	CSocio socio;
+	socio.mNombre = zUser;
+	if (!gDB.GetSocio(socio))
+	{
+		MessageBox(NULL, "El socio no esta en el base de datos", "Error", NULL);
+		return 0;
+	}
+
 }

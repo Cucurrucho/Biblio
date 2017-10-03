@@ -78,6 +78,7 @@ BOOL CAddBookDlg::OnInitDialog()
 
 BEGIN_MESSAGE_MAP(CAddBookDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_BUSCAR, &CAddBookDlg::OnBnClickedButtonBuscar)
+	ON_BN_CLICKED(IDC_BUTTON_CLEAR, &CAddBookDlg::OnBnClickedButtonClear)
 END_MESSAGE_MAP()
 
 
@@ -97,11 +98,22 @@ void CAddBookDlg::OnBnClickedButtonBuscar()
 		return;
 	}
 	CHttpClient client;
-	if (client.OpenInternetConnection(mBook))
+	if (client.MultiSearch(mBook))
 	{
 		SetText(IDC_EDIT_TITULO, mBook.mTitulo);
 		SetText(IDC_EDIT_AUTOR, mBook.mAutor);
 		SetText(IDC_EDIT_EDITORIAL, mBook.mEditorial);
 	}
 
+}
+
+
+void CAddBookDlg::OnBnClickedButtonClear()
+{
+	SetText(IDC_EDIT_TITULO, "");
+	SetText(IDC_EDIT_AUTOR, "");
+	SetText(IDC_EDIT_EDITORIAL, "");
+	SetText(IDC_EDIT_ISBN, "");
+	SetText(IDC_EDIT_GENERO, "");
+	SetText(IDC_EDIT_COMENTARIO, "");
 }

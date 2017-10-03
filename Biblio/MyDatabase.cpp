@@ -3,6 +3,7 @@
 #include "sqlite3.h"
 #include "Book.h"
 #include "Socio.h"
+#include "Lend.h"
 
 CMyDatabase gDB;
 
@@ -138,33 +139,8 @@ bool CMyDatabase::AddBook(CBook &book)
 	}
 	else
 	{
-		MessageBox(NULL, "El libro ya esta en el bas de datos", "Aviso", NULL);
+		MessageBox(NULL, "El libro ya esta en el base de datos", "Aviso", NULL);
 		return false;
-		/*int result = MessageBox(NULL, "El libro ya esta fichado, desea agregar ejemplar", "Libro Fichado", MB_YESNO);
-		if (result == IDYES) {
-			char zBuff[128];
-			sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares + ejemplares);
-			sql = "UPDATE Books SET Ejemplares = ";
-			sql += zBuff;
-			sql += " WHERE ISBN = '";
-			sql += book.mISBN;
-			sql += "';";
-			rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
-			if (rc != SQLITE_OK)
-			{
-				OnError("Update Error");
-				return false;
-			}
-			else
-			{
-				MessageBox(NULL, "Libro Actualizado", "Exito", NULL);
-				return true;
-			}
-		}
-		else
-		{
-			return true;
-		}*/
 	}
 	
 }
@@ -178,57 +154,6 @@ bool CMyDatabase::HasBook(CBook &book)
 	}
 	if (!book.mTitulo.IsEmpty())
 		return SearchBookByTitle(book);
-	/*if (!Open())
-		return false;
-
-	sqlite3_stmt *stmt;
-	CString sql = "SELECT * FROM Books WHERE ISBN = '";
-	sql += book.mISBN;
-	sql += "';";
-	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
-	if (rc != SQLITE_OK)
-	{
-		OnError("Statment error");
-		return -1;
-	}
-	rc = sqlite3_step(stmt);
-	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
-	{
-		OnError("Select Error");
-		sqlite3_finalize(stmt);
-		return -1;
-	}
-	if (rc == SQLITE_DONE)
-	{
-		sqlite3_finalize(stmt);
-		sql = "SELECT * FROM Books WHERE Titulo = '";
-		sql += book.mTitulo;
-		sql += "';";
-		rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
-		if (rc != SQLITE_OK)
-		{
-			OnError("Statment error");
-			return -1;
-		}
-		rc = sqlite3_step(stmt);
-		if (rc != SQLITE_ROW && rc != SQLITE_DONE)
-		{
-			OnError("Select Error");
-			sqlite3_finalize(stmt);
-			return -1;
-		}
-		if (rc == SQLITE_DONE)
-		{
-			sqlite3_finalize(stmt);
-			return 0;
-		}
-		int ejemplares = sqlite3_column_int(stmt, 0);
-		sqlite3_finalize(stmt);
-		return ejemplares;
-	}
-	int ejemplares = sqlite3_column_int(stmt,0);
-	sqlite3_finalize(stmt);
-	return ejemplares;*/
 	return false;
 }
 
@@ -296,7 +221,6 @@ bool CMyDatabase::AddSocio(CSocio &socio)
 		return true;
 	}
 }
-
 
 bool CMyDatabase::SearchBookByISBN(CBook & book)
 {
@@ -422,8 +346,10 @@ bool CMyDatabase::CreateLendingsTable()
 }
 
 
-bool CMyDatabase::AddLending(CBook & book, CSocio & socio)
+bool CMyDatabase::AddLending(CLend &lend)
 {
+	CBook book = lend.mBook;
+	CSocio socio = lend.mSocio;
 	if (!HasBook(book))
 	{
 		MessageBox(NULL, "El libro no esta en el base de datos", "Aviso", NULL);

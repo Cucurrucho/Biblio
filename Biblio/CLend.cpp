@@ -4,7 +4,9 @@
 #include "Socio.h"
 
 
-CLend::CLend()
+CLend::CLend(const CBook &book, const CSocio &socio)
+	: mBook(book)
+	, mSocio(socio)
 {
 }
 

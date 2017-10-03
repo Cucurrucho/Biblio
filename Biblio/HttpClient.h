@@ -4,8 +4,11 @@ class CHttpClient
 public:
 	CHttpClient();
 	~CHttpClient();
-	bool OpenInternetConnection(class CBook &book);
+	bool Search1(class CBook &book);
 	CString GetValueFromString(const CString &s, const char *zKey);
-	bool Search2();
+	CString GetValueFromString2(const CString &s, const char *zKey);
+	bool Search2(class CBook &book);
+	
+	bool MultiSearch(class CBook &book);
 };
 

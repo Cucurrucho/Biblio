@@ -78,6 +78,12 @@
     <ClInclude Include="LendDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReturnBookDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Biblio.cpp">
@@ -128,6 +134,9 @@
     <ClCompile Include="LendDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReturnBookDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Biblio.rc">
@@ -137,6 +146,9 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
     <ResourceCompile Include="Biblio2.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="Biblio3.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

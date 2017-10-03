@@ -20,7 +20,7 @@ public:
 	bool SearchBookByTitle(CBook & book);
 	void DBSeeder();
 	bool CreateLendingsTable();
-	bool AddLending(class CBook & book, class CSocio & socio);
+	bool AddLending(class CLend &lend);
 	bool GetSocio(class CSocio &socio);
 };
 extern CMyDatabase gDB;

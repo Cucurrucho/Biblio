@@ -27,4 +27,5 @@ public:
 	virtual BOOL OnInitDialog();
 	virtual void OnBnClickedButtonBuscar();
 
+	afx_msg void OnBnClickedButtonClear();
 };
