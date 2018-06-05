@@ -1,0 +1,125 @@
+﻿  AddBookDlg.cpp
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(54): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(54): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(64): error C2678: binary '+': no operator found which takes a left-hand operand of type 'const char [27]' (or there is no acceptable conversion)
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\comutil.h(454): note: could be '_bstr_t operator +(const wchar_t *,const _bstr_t &)'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\comutil.h(444): note: or       '_bstr_t operator +(const char *,const _bstr_t &)'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\atlsimpstr.h(643): note: or       'ATL::CSimpleStringT<wchar_t,true> ATL::CSimpleStringT<wchar_t,true>::operator +(const ATL::CSimpleStringT<wchar_t,true> &,const ATL::CSimpleStringT<wchar_t,true> &)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\atlsimpstr.h(654): note: or       'ATL::CSimpleStringT<wchar_t,true> ATL::CSimpleStringT<wchar_t,true>::operator +(const ATL::CSimpleStringT<wchar_t,true> &,const wchar_t *)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\atlsimpstr.h(665): note: or       'ATL::CSimpleStringT<wchar_t,true> ATL::CSimpleStringT<wchar_t,true>::operator +(const wchar_t *,const ATL::CSimpleStringT<wchar_t,true> &)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2380): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::operator +(const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &,const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2391): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::operator +(const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &,const wchar_t *)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2402): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::operator +(const wchar_t *,const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2419): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::operator +(const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &,char)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2431): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::operator +(char,const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2444): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::operator +(const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &,wchar_t)' [found using argument-dependent lookup]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(2456): note: or       'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::operator +(wchar_t,const ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>> &)' [found using argument-dependent lookup]
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(64): note: while trying to match the argument list '(const char [27], CString)'
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(73): error C2664: 'void CWnd::SetWindowTextW(LPCTSTR)': cannot convert argument 1 from 'const char [2]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(73): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(96): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 1 from 'const char [28]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(96): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(102): error C2664: 'bool CMyDialogEx::SetText(int,const char *,const char *)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(102): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(103): error C2664: 'bool CMyDialogEx::SetText(int,const char *,const char *)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(103): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(104): error C2664: 'bool CMyDialogEx::SetText(int,const char *,const char *)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\addbookdlg.cpp(104): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  AddSocioDlg.cpp
+c:\users\adam\source\repos\biblio\biblio\addsociodlg.cpp(52): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 1 from 'const char [33]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\addsociodlg.cpp(52): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+  HttpClient.cpp
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(25): error C2440: 'initializing': cannot convert from 'const char [16]' to 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(25): note: Constructor for class 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>' is declared 'explicit'
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(27): error C2440: 'initializing': cannot convert from 'const char [50]' to 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(27): note: Constructor for class 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>' is declared 'explicit'
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(28): error C2440: 'initializing': cannot convert from 'const char [38]' to 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(28): note: Constructor for class 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>' is declared 'explicit'
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(30): error C2440: 'initializing': cannot convert from 'const char [24]' to 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(30): note: Constructor for class 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>' is declared 'explicit'
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(88): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [34]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(88): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(93): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [9]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(93): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(94): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [9]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(94): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(95): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [9]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(95): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(96): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [3]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(96): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(97): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [4]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(97): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(98): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [3]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(98): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(99): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [3]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(99): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(100): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [3]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(100): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(101): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Replace(const wchar_t *,const wchar_t *)': cannot convert argument 1 from 'const char [3]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(101): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(137): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [44]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(137): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(160): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Find(const wchar_t *,int) throw() const': cannot convert argument 1 from 'const char *' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(160): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(162): warning C4927: illegal conversion; more than one user-defined conversion has been implicitly applied
+  c:\users\adam\source\repos\biblio\biblio\httpclient.cpp(162): note: while calling the constructor 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::CStringT(const wchar_t *)'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\atlmfc\include\cstringt.h(1043): note: see declaration of 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::CStringT'
+  MyDatabase.cpp
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(33): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'char [256]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(33): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(73): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [14]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(73): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(126): error C2664: 'int sqlite3_exec(sqlite3 *,const char *,int (__cdecl *)(void *,int,char **,char **),void *,char **)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(126): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(133): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [14]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(133): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(140): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [36]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(140): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(256): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [14]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(256): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(287): error C2664: 'int sqlite3_exec(sqlite3 *,const char *,int (__cdecl *)(void *,int,char **,char **),void *,char **)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(287): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(294): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': cannot convert argument 2 from 'const char [15]' to 'LPCWSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(294): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(306): error C2440: 'initializing': cannot convert from 'const char [35]' to 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(306): note: Constructor for class 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>' is declared 'explicit'
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(309): error C2664: 'int sqlite3_prepare_v2(sqlite3 *,const char *,int,sqlite3_stmt **,const char **)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(309): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(344): error C2440: 'initializing': cannot convert from 'const char [35]' to 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(344): note: Constructor for class 'ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>' is declared 'explicit'
+c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(347): error C2664: 'int sqlite3_prepare_v2(sqlite3 *,const char *,int,sqlite3_stmt **,const char **)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydatabase.cpp(347): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  MyDialogEx.cpp
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(20): error C2664: 'void CWnd::SetWindowTextW(LPCTSTR)': cannot convert argument 1 from 'char [64]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(20): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(30): error C2664: 'void CWnd::SetWindowTextW(LPCTSTR)': cannot convert argument 1 from 'char [64]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(30): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(40): error C2664: 'void CWnd::SetWindowTextW(LPCTSTR)': cannot convert argument 1 from 'char [64]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(40): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(56): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(56): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(72): error C2664: 'double atof(const char *)': cannot convert argument 1 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(72): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(88): error C2664: 'double atof(const char *)': cannot convert argument 1 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(88): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(104): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(104): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(148): error C2664: 'void CWnd::SetWindowTextW(LPCTSTR)': cannot convert argument 1 from 'const char *' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(148): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(156): error C2664: 'void CWnd::SetWindowTextW(LPCTSTR)': cannot convert argument 1 from 'const char *' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(156): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(164): error C2664: 'bool CMyDialogEx::SetText(int,const char *,const char *)': cannot convert argument 2 from 'CString' to 'const char *'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(164): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(223): error C2664: 'int ATL::CStringT<wchar_t,StrTraitMFC_DLL<wchar_t,ATL::ChTraitsCRT<wchar_t>>>::Find(const wchar_t *,int) throw() const': cannot convert argument 1 from 'const char [4]' to 'wchar_t'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(223): note: There is no context in which this conversion is possible
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(235): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 1 from 'const char [17]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(235): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(258): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 2 from 'const char [14]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(258): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(266): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 1 from 'char [256]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(266): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(280): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 2 from 'const char [14]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(280): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(288): error C2664: 'int CWnd::MessageBoxW(LPCTSTR,LPCTSTR,UINT)': cannot convert argument 1 from 'char [256]' to 'LPCTSTR'
+  c:\users\adam\source\repos\biblio\biblio\mydialogex.cpp(288): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+  Generating Code...

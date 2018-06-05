@@ -17,14 +17,24 @@ CBooks::~CBooks()
 }
 
 
-void CBooks::Add()
+bool CBooks::Add()
 {
 	CBook book;
 	CAddBookDlg dlg(book);
 	int rc = dlg.DoModal();
 	if (rc == IDOK)
 	{
-		gDB.AddBook(book);
+		return gDB.AddBook(book);
 	}
 
+	return false;
+
+}
+
+void CBooks::AddBooks()
+{
+	while (1) {
+		if (!Add())
+			return;
+	}
 }

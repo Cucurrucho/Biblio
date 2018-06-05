@@ -170,7 +170,7 @@ void CBiblioDlg::OnFileExit()
 
 void CBiblioDlg::OnBooksAdd()
 {
-	gBooks.Add();
+	gBooks.AddBooks();
 }
 
 

@@ -138,7 +138,7 @@ bool CMyDatabase::AddBook(CBook &book)
 	else
 	{
 		MessageBox(NULL, "El libro ya esta en el bas de datos", "Aviso", NULL);
-		return false;
+		return true;
 		/*int result = MessageBox(NULL, "El libro ya esta fichado, desea agregar ejemplar", "Libro Fichado", MB_YESNO);
 		if (result == IDYES) {
 			char zBuff[128];
