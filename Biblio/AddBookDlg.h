@@ -26,6 +26,7 @@ public:
 	virtual void OnOK();
 	virtual BOOL OnInitDialog();
 	virtual void OnBnClickedButtonBuscar();
+	void ReadAllFields();
 
 	afx_msg void OnBnClickedButtonClear();
 };

@@ -24,7 +24,7 @@ void CMyDatabase::Init()
 	CreateBooksTable();
 	CreateSociosTable();
 	CreateLendingsTable();
-	DBSeeder();
+	//DBSeeder();
 }
 
 
@@ -139,8 +139,33 @@ bool CMyDatabase::AddBook(CBook &book)
 	}
 	else
 	{
-		MessageBox(NULL, "El libro ya esta en el base de datos", "Aviso", NULL);
-		return false;
+		MessageBox(NULL, "El libro ya esta en el bas de datos", "Aviso", NULL);
+		return true;
+		/*int result = MessageBox(NULL, "El libro ya esta fichado, desea agregar ejemplar", "Libro Fichado", MB_YESNO);
+		if (result == IDYES) {
+			char zBuff[128];
+			sprintf_s(zBuff, sizeof(zBuff), "%d", book.mEjemplares + ejemplares);
+			sql = "UPDATE Books SET Ejemplares = ";
+			sql += zBuff;
+			sql += " WHERE ISBN = '";
+			sql += book.mISBN;
+			sql += "';";
+			rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+			if (rc != SQLITE_OK)
+			{
+				OnError("Update Error");
+				return false;
+			}
+			else
+			{
+				MessageBox(NULL, "Libro Actualizado", "Exito", NULL);
+				return true;
+			}
+		}
+		else
+		{
+			return true;
+		}*/
 	}
 	
 }

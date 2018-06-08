@@ -4,7 +4,8 @@ class CBooks
 public:
 	CBooks();
 	~CBooks();
-	void Add();
+	bool Add();
+	void AddBooks();
 };
 extern CBooks gBooks;
 

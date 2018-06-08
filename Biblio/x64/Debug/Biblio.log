@@ -1,5 +1,2 @@
-﻿  Lendings.cpp
-c:\users\adam\source\repos\biblio\biblio\lendings.cpp(26): warning C4244: 'initializing': conversion from 'INT_PTR' to 'int', possible loss of data
-c:\users\adam\source\repos\biblio\biblio\lendings.cpp(45): warning C4715: 'CLendings::GetLendedBook': not all control paths return a value
+﻿  MyDatabase.cpp
   Biblio.vcxproj -> C:\Users\adam\source\repos\Biblio\x64\Debug\Biblio.exe
-  Biblio.vcxproj -> C:\Users\adam\source\repos\Biblio\x64\Debug\Biblio.pdb (Partial PDB)
