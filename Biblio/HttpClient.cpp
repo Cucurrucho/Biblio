@@ -41,7 +41,7 @@ bool CHttpClient::Search1(CBook &book)
 
 		if (dwRet == HTTP_STATUS_OK)
 		{
-			fopen_s(&pf, "d:\\MyLog\\InternetText.txt", "w");
+			fopen_s(&pf, "c:\\MyLog\\InternetText.txt", "w");
 			{
 				unsigned char zBuff[N_READ+1];
 				int nAllRead = 0;
