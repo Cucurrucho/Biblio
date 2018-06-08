@@ -3,6 +3,7 @@
 #include "sqlite3.h"
 #include "Book.h"
 #include "Socio.h"
+#include "Lend.h"
 
 CMyDatabase gDB;
 
@@ -22,7 +23,8 @@ void CMyDatabase::Init()
 {
 	CreateBooksTable();
 	CreateSociosTable();
-	DBSeeder();
+	CreateLendingsTable();
+	//DBSeeder();
 }
 
 
@@ -177,57 +179,6 @@ bool CMyDatabase::HasBook(CBook &book)
 	}
 	if (!book.mTitulo.IsEmpty())
 		return SearchBookByTitle(book);
-	/*if (!Open())
-		return false;
-
-	sqlite3_stmt *stmt;
-	CString sql = "SELECT * FROM Books WHERE ISBN = '";
-	sql += book.mISBN;
-	sql += "';";
-	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
-	if (rc != SQLITE_OK)
-	{
-		OnError("Statment error");
-		return -1;
-	}
-	rc = sqlite3_step(stmt);
-	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
-	{
-		OnError("Select Error");
-		sqlite3_finalize(stmt);
-		return -1;
-	}
-	if (rc == SQLITE_DONE)
-	{
-		sqlite3_finalize(stmt);
-		sql = "SELECT * FROM Books WHERE Titulo = '";
-		sql += book.mTitulo;
-		sql += "';";
-		rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
-		if (rc != SQLITE_OK)
-		{
-			OnError("Statment error");
-			return -1;
-		}
-		rc = sqlite3_step(stmt);
-		if (rc != SQLITE_ROW && rc != SQLITE_DONE)
-		{
-			OnError("Select Error");
-			sqlite3_finalize(stmt);
-			return -1;
-		}
-		if (rc == SQLITE_DONE)
-		{
-			sqlite3_finalize(stmt);
-			return 0;
-		}
-		int ejemplares = sqlite3_column_int(stmt, 0);
-		sqlite3_finalize(stmt);
-		return ejemplares;
-	}
-	int ejemplares = sqlite3_column_int(stmt,0);
-	sqlite3_finalize(stmt);
-	return ejemplares;*/
 	return false;
 }
 
@@ -296,7 +247,6 @@ bool CMyDatabase::AddSocio(CSocio &socio)
 	}
 }
 
-
 bool CMyDatabase::SearchBookByISBN(CBook & book)
 {
 	if (!Open())
@@ -324,12 +274,13 @@ bool CMyDatabase::SearchBookByISBN(CBook & book)
 			sqlite3_finalize(stmt);
 			return false;
 	}
-	book.mTitulo = sqlite3_column_text(stmt, 0);
-	book.mEditorial = sqlite3_column_text(stmt, 2);
-	book.mISBN = sqlite3_column_text(stmt, 3);
-	book.mGenero = sqlite3_column_text(stmt, 4);
-	book.mEjemplares = sqlite3_column_int(stmt, 5);
-	book.mComentario = sqlite3_column_text(stmt, 6);
+	book.mID = sqlite3_column_int(stmt, 0);
+	book.mTitulo = sqlite3_column_text(stmt, 1);
+	book.mAutor = sqlite3_column_text(stmt, 2);
+	book.mEditorial = sqlite3_column_text(stmt, 3);
+	book.mGenero = sqlite3_column_text(stmt, 5);
+	book.mEjemplares = sqlite3_column_int(stmt, 6);
+	book.mComentario = sqlite3_column_text(stmt, 7);
 	sqlite3_finalize(stmt);
 	return true;
 }
@@ -362,12 +313,13 @@ bool CMyDatabase::SearchBookByTitle(CBook & book)
 		sqlite3_finalize(stmt);
 		return false;
 	}
-	book.mTitulo = sqlite3_column_text(stmt, 0);
-	book.mAutor = sqlite3_column_text(stmt, 1);
-	book.mEditorial = sqlite3_column_text(stmt, 2);
-	book.mGenero = sqlite3_column_text(stmt, 4);
-	book.mEjemplares = sqlite3_column_int(stmt, 5);
-	book.mComentario = sqlite3_column_text(stmt, 6);
+	book.mID = sqlite3_column_int(stmt, 0);
+	book.mAutor = sqlite3_column_text(stmt, 2);
+	book.mEditorial = sqlite3_column_text(stmt, 3);
+	book.mISBN = sqlite3_column_text(stmt, 4);
+	book.mGenero = sqlite3_column_text(stmt, 5);
+	book.mEjemplares = sqlite3_column_int(stmt, 6);
+	book.mComentario = sqlite3_column_text(stmt, 7);
 	sqlite3_finalize(stmt);
 	return true;
 }
@@ -386,4 +338,112 @@ void CMyDatabase::DBSeeder()
 	book.mISBN = "0000";
 	book.mTitulo = "Bla2 Title";
 	AddBook(book);
+	CSocio socio;
+	socio.mNombre = "Adam Bar";
+	AddSocio(socio);
+	socio.mNombre = "Nur";
+	AddSocio(socio);
+}
+
+
+bool CMyDatabase::CreateLendingsTable()
+{
+	if (!Open())
+		return false;
+
+	int rc;
+	char *sql;
+	sql = "CREATE TABLE Lendings ("
+		"Socio_ID	INTEGER NOT NULL,"
+		"Book_ID	INTEGER	NOT	NULL,"
+		"Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,"
+		"CONSTRAINT id PRIMARY KEY (Socio_ID, Book_ID)"
+		");";
+	rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+	if (rc) {
+		OnError("Create Table");
+	}
+	else {
+		MessageBox(NULL, "Table created", "Success", NULL);
+	}
+	Close();
+	return rc == 0;
+}
+
+
+bool CMyDatabase::AddLending(CLend &lend)
+{
+	CBook book = lend.mBook;
+	CSocio socio = lend.mSocio;
+	if (!HasBook(book))
+	{
+		MessageBox(NULL, "El libro no esta en el base de datos", "Aviso", NULL);
+		return false;
+	}
+	if (!GetSocio(socio))
+	{
+		MessageBox(NULL, "El Usuario no esta en el base de datos", "Aviso", NULL);
+		return false;
+	}
+	if (!mdb) {
+		Open();
+		if (!mdb) {
+			return false;
+		}
+	}
+	CString sql;
+	char socio_id[33];
+	char book_id[33];
+	_itoa_s(socio.mID, socio_id, 10);
+	_itoa_s(book.mID, book_id, 10);
+	int rc;
+	sql = "INSERT INTO Lendings (Socio_ID,Book_ID) VALUES ('";
+	sql += socio_id;
+	sql += "', '";
+	sql += book_id;
+	sql += "');";
+	rc = sqlite3_exec(mdb, sql, NULL, NULL, NULL);
+	if (rc != SQLITE_OK) {
+		OnError("Prestamo");
+		return false;
+	}
+	else
+	{
+		MessageBox(NULL, "Libro Prestado", "Exito", NULL);
+		return true;
+	}
+	
+}
+
+
+bool CMyDatabase::GetSocio(CSocio &socio)
+{
+	if (!Open())
+		return false;
+
+	sqlite3_stmt *stmt;
+	CString sql = "SELECT * FROM Socios WHERE Nombre = '";
+	sql += socio.mNombre;
+	sql += "'";
+	int rc = sqlite3_prepare_v2(mdb, sql, -1, &stmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		OnError("Statment error");
+		return false;
+	}
+	rc = sqlite3_step(stmt);
+	if (rc != SQLITE_ROW && rc != SQLITE_DONE)
+	{
+		OnError("Select Error");
+		sqlite3_finalize(stmt);
+		return false;
+	}
+	if (rc == SQLITE_DONE)
+	{
+		sqlite3_finalize(stmt);
+		return false;
+	}
+	socio.mID = sqlite3_column_int(stmt, 0);
+	sqlite3_finalize(stmt);
+	return true;
 }

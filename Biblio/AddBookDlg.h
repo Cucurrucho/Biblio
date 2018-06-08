@@ -25,7 +25,8 @@ public:
 	class CBook &mBook;
 	virtual void OnOK();
 	virtual BOOL OnInitDialog();
+	virtual void OnBnClickedButtonBuscar();
 	void ReadAllFields();
 
-	afx_msg void OnBnClickedButtonBuscar();
+	afx_msg void OnBnClickedButtonClear();
 };
